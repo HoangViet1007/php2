@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 20, 2021 lúc 07:30 PM
+-- Thời gian đã tạo: Th4 16, 2021 lúc 06:09 PM
 -- Phiên bản máy phục vụ: 10.4.16-MariaDB
 -- Phiên bản PHP: 7.4.12
 
@@ -67,7 +67,8 @@ INSERT INTO `comment` (`id`, `content`, `id_product`, `id_user`, `created_at`) V
 (1, 'Sản phẩm rất đẹp !', 1, 'ps4', '2021-01-15 09:27:14'),
 (2, 'Áo mặc đẹp , chất liệu mát mẻ dễ chịu !', 1, 'ps4', '2021-01-15 09:38:51'),
 (4, 'Sản phẩm rất tốt !', 14, 'ps4', '2021-01-15 09:56:54'),
-(6, 'Cặp chất lượng , da thạt , ns chung rất ok ! ', 8, 'ps3', '2021-01-17 10:03:40');
+(6, 'Cặp chất lượng , da thạt , ns chung rất ok ! ', 8, 'ps3', '2021-01-17 10:03:40'),
+(9, 'Sản phẩm đẹp quá', 18, 'ps3', '2021-02-28 18:47:55');
 
 -- --------------------------------------------------------
 
@@ -141,6 +142,7 @@ INSERT INTO `image_product_gallery` (`id`, `name`, `image`, `id_product`) VALUES
 
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
+  `customer_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `customer_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `customer_address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `customer_phone` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -153,12 +155,14 @@ CREATE TABLE `orders` (
 -- Đang đổ dữ liệu cho bảng `orders`
 --
 
-INSERT INTO `orders` (`id`, `customer_name`, `customer_address`, `customer_phone`, `customer_email`, `total_price`, `created_at`) VALUES
-(7, 'Nguyễn Duy Việt Anh', '192 - Phú Diễn - Nam Từ Liêm - Hà Nội', '0859850000', 'anhndvph10550@fpt.edu.vn', 1309000, '2021-01-25 10:45:47'),
-(15, 'Nguyễn Duy Việt Anh', '192 - Phú Diễn - Nam Từ Liêm - Hà Nội', '0859850000', 'anhndvph10550@fpt.edu.vn', 1104000, '2021-03-25 12:09:50'),
-(16, 'Nguyễn Duy Việt Anh', '192 - Phú Diễn - Nam Từ Liêm - Hà Nội', '0859850000', 'anhndvph10550@fpt.edu.vn', 1139000, '2021-02-25 23:06:05'),
-(19, 'Trần Thị Thương', '89 - Hoài Đức - Hà Nội', '0583572334', 'thuong@gmail.com', 1952000, '2021-04-27 07:28:16'),
-(20, 'Chúc Anh Quân', '89 - Kiều Mai - Hà Nội', '0347667982', 'quan@gmail.com', 679000, '2021-02-27 07:30:44');
+INSERT INTO `orders` (`id`, `customer_id`, `customer_name`, `customer_address`, `customer_phone`, `customer_email`, `total_price`, `created_at`) VALUES
+(7, 'ps4', 'Nguyễn Duy Việt Anh', '192 - Phú Diễn - Nam Từ Liêm - Hà Nội', '0859850000', 'anhndvph10550@fpt.edu.vn', 1309000, '2021-01-21 17:35:37'),
+(15, 'ps4', 'Nguyễn Duy Việt Anh', '192 - Phú Diễn - Nam Từ Liêm - Hà Nội', '0859850000', 'anhndvph10550@fpt.edu.vn', 1104000, '2021-02-21 17:35:42'),
+(16, 'ps4', 'Nguyễn Duy Việt Anh', '192 - Phú Diễn - Nam Từ Liêm - Hà Nội', '0859850000', 'anhndvph10550@fpt.edu.vn', 1139000, '2021-02-21 17:35:46'),
+(19, 'ps3', 'Trần Thị Thương', '89 - Hoài Đức - Hà Nội', '0583572334', 'thuong@gmail.com', 1952000, '2021-03-21 17:35:50'),
+(20, 'ps5', 'Chúc Anh Quân', '89 - Kiều Mai - Hà Nội', '0347667982', 'quan@gmail.com', 679000, '2021-02-21 17:35:55'),
+(55, 'ps3', 'Trần Thị Thương', '89 - Hoài Đức - Hà Nội', '0583572334', 'thuong@gmail.com', 1593000, '2021-04-26 04:14:15'),
+(56, 'ps3', 'Trần Thị Thương', '89 - Hoài Đức - Hà Nội', '0583572334', 'thuong@gmail.com', 830000, '2021-02-28 18:52:57');
 
 -- --------------------------------------------------------
 
@@ -190,7 +194,11 @@ INSERT INTO `orders_detail` (`id`, `id_product`, `name_product`, `image_product`
 (16, 14, 'Quần Jean rách gối', 'public/image/product/5ffeb540e3812-quanjeanrach.jpg', 1, 19),
 (17, 11, 'Balo fuma ', 'public/image/product/5ffeb3b63dfcc-balofuma.jpg', 1, 19),
 (18, 8, 'Balo da PK01', 'public/image/product/5ff89398dcc66-balo1.jpg', 1, 19),
-(19, 15, 'Giày jocdan 01', 'public/image/product/5ffeb5f1b46b0-giaynam01.jpg', 1, 20);
+(19, 15, 'Giày jocdan 01', 'public/image/product/5ffeb5f1b46b0-giaynam01.jpg', 1, 20),
+(86, 17, 'Áo sơ mi trắng kẻ', 'public/image/product/600fdd1fa6dde_smm1.jpg', 1, 55),
+(87, 18, 'Áo sơ mi trăng SM1', 'public/image/product/600fddf2bd4ad_s1.jpg', 1, 55),
+(88, 15, 'Giày jocdan 01', 'public/image/product/5ffeb5f1b46b0-giaynam01.jpg', 1, 55),
+(89, 17, 'Áo sơ mi trắng kẻ', 'public/image/product/600fdd1fa6dde_smm1.jpg', 2, 56);
 
 -- --------------------------------------------------------
 
@@ -222,12 +230,12 @@ INSERT INTO `product` (`id`, `name`, `image`, `price`, `sale`, `description`, `n
 (9, 'Quần Âu q01', 'public/image/product/5ff895f7dd7e1-qa1.jpg', 499000, 4, 'Quần âu may với những đường nét tinh sảo , co dãn 4 chiều , mặc vô cùng thỏa mái , vô cùng đẹp trai', 199, 6),
 (10, 'Balo vai lụa', 'public/image/product/5ffeb05a7b4f8-balolua.jpg', 369000, 4, 'Sản phẩm rất trẻ trung phù hợp với lưa tuổi học sinh , sinh viên .', 145, 8),
 (11, 'Balo fuma ', 'public/image/product/5ffeb3b63dfcc-balofuma.jpg', 499000, 4, 'Sản phẩm rất nam tính rất thể thao và cũng rất thời thượng . Phù hợp với đi học , những cuộc trải nghiệm đường dài hay những lần đi phượt đầy mạo hiểm . ', 167, 8),
-(12, 'Quần âu kẻ sọc', 'public/image/product/5ffeb4391b766-quânukesoc.jpg', 499000, 2, 'Quần âu đươc ma bằng những đường nét tinh tế , rất thời thượng và nam tính . Thách thức mọi ánh nhìn . ', 348, 6),
+(12, 'Quần âu kẻ sọc', 'public/image/product/5ffeb4391b766-quânukesoc.jpg', 499000, 2, 'Quần âu đươc ma bằng những đường nét tinh tế , rất thời thượng và nam tính . Thách thức mọi ánh nhìn . ', 349, 6),
 (13, 'Quần Jean QJ 01', 'public/image/product/5ffeb4d4550fd-quanjean1.jpg', 415000, 2, 'Quần jean làm 100% từ cotton , mặc rất dễ chịu , năng dộng , và rất dễ phối đồ . Mặc là đẹp trai . ', 89, 7),
 (14, 'Quần Jean rách gối', 'public/image/product/5ffeb540e3812-quanjeanrach.jpg', 689000, 1, 'Quần jean rách gối làm 100% từ cotton , mặc rất thỏa mái , màu rất nam tính trẻ trung .\r\n', 229, 7),
 (15, 'Giày jocdan 01', 'public/image/product/5ffeb5f1b46b0-giaynam01.jpg', 679000, 4, 'Giày đi êm , đế được đúc nguyên khối rất chắc chắn , đường kim mũi chỉ được khâu rất phong cách , phù hợp với rất nhiều loại quần áo', 199, 2),
 (17, 'Áo sơ mi trắng kẻ', 'public/image/product/600fdd1fa6dde_smm1.jpg', 415000, 4, '<p>&Aacute;o 100% l&agrave;m từ cotton tho&aacute;ng m&aacute;t dễ chịu , mặc l&agrave; đẹo trai !</p>', 249, 1),
-(18, 'Áo sơ mi trăng SM1', 'public/image/product/600fddf2bd4ad_s1.jpg', 499000, 4, '<p>&Aacute;o chất liệu co gi&atilde;n 4 chiều , chuẩn đẹp trai , th&aacute;ch thức mọi &aacute;nh nh&igrave;n !</p>', 241, 1);
+(18, 'Áo sơ mi trăng SM1', 'public/image/product/600fddf2bd4ad_s1.jpg', 4900000, 4, '<p>&Aacute;o chất liệu co gi&atilde;n 4 chiều , chuẩn đẹp trai , th&aacute;ch thức mọi &aacute;nh nh&igrave;n !</p>', 250, 1);
 
 -- --------------------------------------------------------
 
@@ -276,11 +284,11 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `password`, `name`, `image`, `address`, `phone`, `email`, `vai_tro`) VALUES
-('ps1', '123456789', 'Hoàng Quốc Bảo Việt', 'public/image/user/5fff2e9e2c062-me.jpg', '89 - Hoài Đức - Hà Nội', '0355755697', 'hoangviet10072001@gmail.com', 1),
-('ps2', '123456789', 'Đào Ánh Tuyết', 'public/image/user/6000734369ad7-5fb69eb784b7c_vk.jpg', '89 - Hoài Đức - Hà Nội', '0827541636', 'viettuyet10072001@gmail.com', 1),
-('ps3', '123456789', 'Trần Thị Thương', 'public/image/user/600070fba863f-121092441_359184295201933_6285663945253883419_o.jpg', '89 - Hoài Đức - Hà Nội', '0583572334', 'thuong@gmail.com', 2),
-('ps4', '123456789', 'Nguyễn Duy Việt Anh', 'public/image/user/600020b8bda37-56b1277997b26aec33a3.jpg', '192 - Phú Diễn - Nam Từ Liêm - Hà Nội', '0859850000', 'anhndvph10550@fpt.edu.vn', 2),
-('ps5', '123456789', 'Chúc Anh Quân', 'public/image/user/6004703bf3a48_5fc1357ca22df_123310298_996218494220871_5114419063741368147_n.jpg', '89 - Kiều Mai - Hà Nội', '0347667982', 'hoangviet10172001@gmail.com', 2);
+('ps1', 'Viet10072001', 'Hoàng Quốc Bảo Việt', 'public/image/user/5fff2e9e2c062-me.jpg', '89 - Hoài Đức - Hà Nội', '0355755697', 'hoangviet10072001@gmail.com', 1),
+('ps2', 'Viet10072001', 'Đào Ánh Tuyết', 'public/image/user/6000734369ad7-5fb69eb784b7c_vk.jpg', '89 - Hoài Đức - Hà Nội', '0827541636', 'viettuyet10072001@gmail.com', 1),
+('ps3', 'Viet10072001', 'Trần Thị Thương', 'public/image/user/600070fba863f-121092441_359184295201933_6285663945253883419_o.jpg', '89 - Hoài Đức - Hà Nội', '0583572334', 'thuong@gmail.com', 2),
+('ps4', 'Viet10072001', 'Nguyễn Duy Việt Anh', 'public/image/user/600020b8bda37-56b1277997b26aec33a3.jpg', '192 - Phú Diễn - Nam Từ Liêm - Hà Nội', '0859850000', 'anhndvph10550@fpt.edu.vn', 2),
+('ps5', 'Viet10072001', 'Chúc Anh Quân', 'public/image/user/6004703bf3a48_5fc1357ca22df_123310298_996218494220871_5114419063741368147_n.jpg', '89 - Phú Diễn - Hà Nội', '0583465720', 'hoangviet10172001@gmail.com', 2);
 
 -- --------------------------------------------------------
 
@@ -359,7 +367,8 @@ ALTER TABLE `orders`
 -- Chỉ mục cho bảng `orders_detail`
 --
 ALTER TABLE `orders_detail`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK_orders_detail_orders` (`id_orders`);
 
 --
 -- Chỉ mục cho bảng `product`
@@ -406,7 +415,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT cho bảng `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT cho bảng `image_product_gallery`
@@ -418,13 +427,13 @@ ALTER TABLE `image_product_gallery`
 -- AUTO_INCREMENT cho bảng `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT cho bảng `orders_detail`
 --
 ALTER TABLE `orders_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 
 --
 -- AUTO_INCREMENT cho bảng `product`
@@ -460,6 +469,12 @@ ALTER TABLE `websetting`
 ALTER TABLE `comment`
   ADD CONSTRAINT `FK_comment_product` FOREIGN KEY (`id_product`) REFERENCES `product` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `FK_comment_user` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `orders_detail`
+--
+ALTER TABLE `orders_detail`
+  ADD CONSTRAINT `FK_orders_detail_orders` FOREIGN KEY (`id_orders`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `product`
