@@ -1,0 +1,59 @@
+
+<?php $__env->startSection('main-conten'); ?>
+<div class="page-header" style=" background-color: #FAFAFA;box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.1);">
+    <div class="container-fluid">
+        <h2 class="h5 no-margin-bottom">Chi tiết bình luận</h2>
+    </div>
+</div>
+
+<div class="container">
+    <p class="text-danger text-center"><?php echo e($errMsg); ?></p>
+    <div class="row d-flex justify-content-center align-items-center">
+
+        <div class="col-md-12">
+            <table class="table table-hover" style="border: 3px solid #FAFAFA;font-size: 13px; text-align: left;">
+                <thead class="thead-dark" style="font-size: 13px;">
+                    <th>MÃ BÌNH LUẬN</th>
+                    <th>MÃ NGƯỜI</th>
+                    <th>TÊN NGƯỜI</th>
+                    <th>HÌNH ẢNH</th>
+                    <th width="250">NỘI DUNG</th>
+                    <th>NGÀY</th>
+                    <th class="text-center">
+                        <a href="./add-product" class=" btn btn-info" style="width: 100px; text-align: center;"><i class="fa fa-plus" aria-hidden="true"></i> Add</a>
+                    </th>
+                </thead>
+
+                <tbody>
+                    <?php $__currentLoopData = $comments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pro): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <tr>
+                        <td><?php echo e($pro->id); ?></td>
+                        <td><?php echo e($pro->id_user); ?></td>
+                        <td><?php echo e($pro->name_user); ?></td>
+                        <td>
+                            <img src="<?php echo e($pro->image_user); ?>" alt="hinh ảnh" width="60px" height="60px">
+                        </td>
+                        <td><?php echo e($pro->content); ?></td>
+                        <td><?php echo e($pro->created_at); ?></td>
+                        <td class="text-center">
+                            <a href="./comment-delete-admin?id=<?php echo e($pro->id); ?>" onclick="return confirm('Bạn có chắc chắn muốn xóa bình luận này không ?')" class="btn btn-danger" style="font-size: 12px;"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                        </td>
+                    </tr>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </tbody>
+
+                <tfoot>
+                    <tr>
+                        <td colspan="12">
+                            <a href="./list-comment" class="btn btn-info btn-sm">
+                                Quay lại danh sách bính luận
+                            </a>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout_admin.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\xampp\htdocs\php2\demo2-php2\app\views/admin/comment/detail-comment.blade.php ENDPATH**/ ?>

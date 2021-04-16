@@ -1,0 +1,281 @@
+body {
+    font-family: 'Redressed', cursive;
+    font-size: 16px;
+}
+
+ul {
+    display: flex;
+}
+
+li {
+    list-style: none;
+}
+
+.nav {
+    margin-top: 12px;
+}
+
+.nav-item {
+    margin-right: 10px;
+}
+
+.nav-link {
+    color: black;
+    font-weight: 520;
+    font-size: 18px;
+}
+
+.nav-link:hover {
+    color: #CCA772;
+}
+
+.main-menu li {
+    position: relative;
+    list-style: none;
+}
+
+.sub-menu {
+    position: absolute;
+    top: 42px;
+    width: 180px;
+    box-shadow: 2px 2px 2px gray;
+    background-color: #FFFFFF;
+    padding-left: 15px;
+    z-index: 999;
+    display: none;
+    transition: 1s ease-in-out;
+}
+
+.sub-menu li {
+    border-bottom: 1px solid #F0F0F0;
+    width: 100%;
+    list-style: none;
+}
+
+.main-menu li:hover>.sub-menu {
+    display: block;
+}
+
+.sub-menu .nav-link {
+    margin-left: -15px;
+}
+
+.sub-menu li a {
+    font-family: 'Redressed', cursive;
+}
+
+ul li a:hover {
+    transform: scale(1.07);
+    transition: .3s;
+}
+
+.a {
+    border: 1px solid #CCA772;
+    color: gray;
+}
+
+.a:hover {
+    background-color: #CCA772;
+    color: white !important;
+}
+
+
+/* --------------------------- menu loai hang -------------------*/
+
+#menu_lh ul {
+    width: 205px;
+    padding: 0;
+    list-style-type: none;
+    text-align: left;
+    border: 1px solid #f5f5f5;
+    box-shadow: 2px 2px 1px gray;
+}
+
+#menu_lh li {
+    width: auto;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #e8e8e8;
+    padding: 0 1em;
+}
+
+#menu_lh li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    font-family: 'Redressed', cursive;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+#menu_lh li:hover {
+    background: #f5f5f5;
+}
+
+#menu_lh li a {
+    /* font-weight: bold; */
+    transition: .3s;
+}
+
+#menu_lh li:hover a {
+    /* font-weight: bold; */
+    transform: scale(1.07);
+    transition: .3s;
+}
+
+.tt-sp {
+    text-align: center;
+    background-color: #CCA772;
+    height: 40px;
+    font-family: 'Redressed', cursive;
+    font-size: 15px;
+}
+
+.tt-sp h4 {
+    font-size: 15px;
+    color: white;
+    padding-top: 10px;
+}
+
+
+/* ------------------------- css phần sản phẩm mới về ở trang chủ ------------- */
+
+.sp-moi-ve {
+    width: 100%;
+    height: 470px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 30px;
+}
+
+.all-sp-moi-ve {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.image-spmv {
+    width: 100%;
+    height: 330px;
+    border: 2px solid #CCA772;
+    overflow: hidden;
+}
+
+.image-spmv img {
+    transition: all 0.5s;
+}
+
+.detail-spmv-price {
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.detail-spmv-but {
+    width: 100%;
+    height: 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: absolute;
+    bottom: -50px;
+    transition: all 0.5s;
+}
+
+.btn-xem {
+    border: 2px solid #CCA772;
+    text-align: center;
+    padding: 10px;
+    border-radius: 0%;
+    font-size: 12px;
+    margin: 4px;
+}
+
+.btn-xem:hover {
+    background-color: #CCA772;
+    color: white;
+    transform: scale(1.02);
+    transition: 0.3s;
+}
+
+.all-sp-moi-ve:hover img {
+    transform: scale(1.06);
+    transition: all 0.5s;
+}
+
+.all-sp-moi-ve:hover .detail-spmv-but {
+    bottom: 0px;
+    transition: all 0.5s;
+}
+
+.all-sp-moi-ve:hover {
+    box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.2);
+}
+
+
+/* -----------------------------css cho chi tiết sản phẩm ------------------  */
+
+.nav-ct {
+    width: 100%;
+    height: 40px;
+    background-color: #F1F1F1;
+    padding-top: 8px;
+}
+
+.nav-ct li {
+    margin-left: 10px;
+}
+
+.nav-ct li a {
+    color: black;
+    text-decoration: none;
+}
+
+.btn-ct {
+    width: 215px;
+    background-color: #CCA772;
+    color: white;
+    text-align: center;
+    border-radius: 0%;
+    height: 40px;
+}
+
+.btn-ct:hover {
+    color: white;
+    transform: scale(1.03);
+    transition: all 0.5s;
+}
+
+.product-description {
+    width: 100%;
+    height: 243px;
+    border: 3px solid #cccc;
+    box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.1);
+}
+
+.title-bl {
+    width: 100%;
+    height: 45px;
+    background-color: #CCA772;
+}
+
+.title-bl h2 {
+    text-align: center;
+}
+
+/* ------- áo nam ở trang chủ ------- */
+.list-product{
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 30px;
+}
+.item-product{
+    border: 1px solid red;
+    height: 440px;
+}
+
+
+/* --------------------- css phần account -----------------------  */

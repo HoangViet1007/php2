@@ -1,0 +1,13 @@
+{
+    "name": "admin/demo-php2",
+    "type": "project",
+    "require": {
+        "illuminate/database": "^8.20",
+        "jenssegers/blade": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    }
+}
